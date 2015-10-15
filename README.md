@@ -1,2 +1,0 @@
-# solarc
-Only core files
