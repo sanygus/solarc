@@ -1,2 +1,2 @@
 # solarc
-null
+Only core files
