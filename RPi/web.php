@@ -2,6 +2,7 @@
 
 $fdir="cam";//директория видео и фото
 $fosv="/tmp/osv";//освещение
+$fvlt="/tmp/vlt";//вольтаж
 
 function btst($vpost)
 {
@@ -87,6 +88,11 @@ if(file_exists($fosv)){
   $light_sensor=round(($light_sensor-85)/1.65);
 }else{$light_sensor="Not found";};
 
+if(file_exists($fvlt)){
+  $voltage_sensor=file_get_contents($fvlt);
+  $voltage_sensor=$voltage_sensor * 4 * 0.0049;
+}else{$voltage_sensor="Not found";};
+
 ?>                                                                                     
 
 <!DOCTYPE html>
@@ -130,7 +136,7 @@ if(!($log=='')){echo("<br><br><hr><br>log:<i>".$log."</i><br>");};
 <div>
 <hr>
 <?php
-echo("<b>RPi:</b>&emsp;CPU: ".$cpu_load."%&emsp;".$temperaturec."<br><br><b>Arduino:</b>&emsp;Освещение ".$light_sensor);
+echo("<b>RPi:</b>&emsp;CPU: ".$cpu_load."%&emsp;".$temperaturec."<br><br><b>Arduino:</b>&emsp;Освещение ".$light_sensor."&emsp;Напряжение ".$voltage_sensor." V");
 ?>
  </div>     
       </center>
