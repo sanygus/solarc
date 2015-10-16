@@ -3,8 +3,6 @@
 byte act=0;//1-get_osv,2-monit_button,3-sig_on
 byte res=0;//out
 byte sigont=0;
-/*bool signet=false;
-bool sigvpn=false;*/
 
 void setup() {
   pinMode(8,INPUT);
@@ -15,8 +13,8 @@ void setup() {
   Wire.begin(0x04);
   Wire.onReceive(rd);//получение
   Wire.onRequest(sd);//отправка
-  Serial.begin(9600);
-  Serial.println("start");
+  //Serial.begin(9600);
+  //Serial.println("start");
 }
 
 void loop() {
@@ -43,6 +41,8 @@ void rd(int cb){
      case 7: digitalWrite(12,LOW);res=1;
       break;
      case 8: shut();res=1;
+      break;
+     case 9: res=analogRead(1)/4;//0-255
       break;
   };
   act=0;
