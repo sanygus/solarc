@@ -8,6 +8,11 @@ while(True):
 		file = open("/tmp/osv","w")
 		file.write(str(smbus.SMBus(1).read_byte(0x04)))
 		file.close()
+
+		smbus.SMBus(1).write_byte(0x04,9)
+		file = open("/tmp/vlt","w")
+		file.write(str(smbus.SMBus(1).read_byte(0x04)))
+		file.close()
 	
 		smbus.SMBus(1).write_byte(0x04,3)
 
